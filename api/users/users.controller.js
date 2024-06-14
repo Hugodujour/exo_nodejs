@@ -8,7 +8,19 @@ class UsersController {
   async getAll(req, res, next) {
     try {
       const users = await usersService.getAll();
-      res.json(users);
+      res.status(200).json(users);
+    } catch (err) {
+      next(err);
+    }
+  }
+  async me(req, res, next) {
+    try {
+      const me = req.user.id;
+      const user = usersService.get(me);
+      if (!user) {
+        throw new NotFoundError();
+      }
+      res.json(user);
     } catch (err) {
       next(err);
     }

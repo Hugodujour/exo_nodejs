@@ -51,3 +51,5 @@ module.exports = {
   app,
   server,
 };
+
+console.log("hey");
