@@ -1,5 +1,5 @@
 const request = require("supertest");
-const { app } = require("../server"); // Assurez-vous que 'app' est correctement exporté dans server.js
+const { app } = require("../server");
 const jwt = require("jsonwebtoken");
 const config = require("../config");
 const mockingoose = require("mockingoose");
@@ -7,8 +7,8 @@ const Article = require("../api/articles/articles.schema");
 
 describe("Tester API users et articles", () => {
   let token;
-  const USER_ID = "6659bffc24f00ee439a13b52";
-  const ARTICLE_ID = "6659c928fadc16f062903091";
+  const USER_ID = "66b7b12821d4962d0b81fd08";
+  const ARTICLE_ID = "66b7b12e21d4962d0b81fd09";
 
   const MOCK_USER = {
     _id: USER_ID,
@@ -17,33 +17,24 @@ describe("Tester API users et articles", () => {
 
   const MOCK_ARTICLE = {
     _id: ARTICLE_ID,
-    title: "New Article",
-    content: "Content of the new article",
+    title: "Bonjour",
+    content: "Je suis content",
     user: USER_ID,
   };
 
   const UPDATED_MOCK_ARTICLE = {
     _id: ARTICLE_ID,
-    title: "Updated Article",
-    content: "Updated content",
+    title: "Je suis mis a jour",
+    content: "Toujours content",
     status: "published",
     user: USER_ID,
   };
 
   beforeEach(() => {
-    // Générer un token JWT valide
     token = jwt.sign(MOCK_USER, config.secretJwtToken);
-
-    // Reset tous les mocks
     mockingoose.resetAll();
-
-    // Mock save()
     mockingoose(Article).toReturn(MOCK_ARTICLE, "save");
-
-    // Mock findOneAndUpdate()
     mockingoose(Article).toReturn(UPDATED_MOCK_ARTICLE, "findOneAndUpdate");
-
-    // Mock findByIdAndDelete()
     mockingoose(Article).toReturn(null, "findByIdAndDelete");
   });
 
@@ -82,6 +73,6 @@ describe("Tester API users et articles", () => {
   });
 
   afterEach(() => {
-    jest.restoreAllMocks(); // Restaure tous les mocks après chaque test
+    jest.restoreAllMocks();
   });
 });
