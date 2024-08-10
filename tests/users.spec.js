@@ -2,7 +2,6 @@ const request = require("supertest");
 const { app } = require("../server");
 const jwt = require("jsonwebtoken");
 const config = require("../config");
-const mongoose = require("mongoose");
 const mockingoose = require("mockingoose");
 const User = require("../api/users/users.model");
 const usersService = require("../api/users/users.service");
@@ -27,8 +26,8 @@ describe("tester API users", () => {
   beforeEach(() => {
     token = jwt.sign({ userId: USER_ID }, config.secretJwtToken);
     // mongoose.Query.prototype.find = jest.fn().mockResolvedValue(MOCK_DATA);
-    mockingoose(User).toReturn(MOCK_DATA, "find");
     mockingoose(User).toReturn(MOCK_DATA_CREATED, "save");
+    mockingoose(User).toReturn(MOCK_DATA_CREATED, "findOne");
   });
 
   test("[Users] Get All", async () => {
