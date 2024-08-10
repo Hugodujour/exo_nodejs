@@ -14,14 +14,15 @@ Diagramme UML :
 
 ![image](https://github.com/user-attachments/assets/c66c1393-12ca-451a-be6b-8ac35d13f4c4)
 ![image](https://github.com/user-attachments/assets/1ef4198f-658f-4656-963d-5ca8c9c3b3be)
-```------------------------------------------------------------
-        Script MySQL.
-------------------------------------------------------------
+```
+#------------------------------------------------------------
+#        Script MySQL.
+#------------------------------------------------------------
 
 
-------------------------------------------------------------
- Table: User
-------------------------------------------------------------
+#------------------------------------------------------------
+# Table: User
+#------------------------------------------------------------
 
 CREATE TABLE User(
         id_user  Int  Auto_increment  NOT NULL ,
@@ -34,9 +35,9 @@ CREATE TABLE User(
 )ENGINE=InnoDB;
 
 
-------------------------------------------------------------
- Table: Article
-------------------------------------------------------------
+#------------------------------------------------------------
+# Table: Article
+#------------------------------------------------------------
 
 CREATE TABLE Article(
         id_article Int  Auto_increment  NOT NULL ,
@@ -46,5 +47,8 @@ CREATE TABLE Article(
 	,CONSTRAINT Article_PK PRIMARY KEY (id_article)
 
 	,CONSTRAINT Article_User_FK FOREIGN KEY (id_user) REFERENCES User(id_user)
-)ENGINE=InnoDB;```
+)ENGINE=InnoDB;
+
+
+```
 
